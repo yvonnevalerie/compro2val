@@ -1,3 +1,4 @@
+package Week1;
 import java.util.Scanner;
 public class Array{
     public static void main(String[]args){
