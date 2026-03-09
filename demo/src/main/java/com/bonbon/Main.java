@@ -20,7 +20,7 @@ public class Main {
             person.setFirstName("bonbon");
 
             System.out.println("Hello dog!");
-            System.out.println(person.toString())
+            System.out.println(person.toString());
         
                 
 
