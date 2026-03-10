@@ -1,0 +1,14 @@
+[
+  {
+    "subject": "OOP",
+    "prelim": 90,
+    "midterm": 88,
+    "finals": 92
+  },
+  {
+    "subject": "COMPRO",
+    "prelim": 85,
+    "midterm": 87,
+    "finals": 89
+  }
+]
