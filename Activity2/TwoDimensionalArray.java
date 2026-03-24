@@ -1,4 +1,4 @@
-package Week2;
+package Activity2;
 
 public class TwoDimensionalArray{
     public static void main() {

@@ -1,4 +1,4 @@
-package Week2;
+package Activity2;
 
 public class Week2Activity1 {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package Week1;
+package Activity1;
 import java.util.Scanner;
 public class Array{
     public static void main(String[]args){
