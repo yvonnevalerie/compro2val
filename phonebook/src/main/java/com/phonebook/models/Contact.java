@@ -5,14 +5,12 @@ public class Contact {
     private String phoneNumber;
     private String email;
 
-    // Constructor
     public Contact(String name, String phoneNumber, String email) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
 
-    // Getters and Setters
     public String getName() {
         return name;
     }
@@ -37,7 +35,6 @@ public class Contact {
         this.email = email;
     }
 
-    // Convert to CSV format
     public String toCsvString() {
         return name + "," + phoneNumber + "," + email;
     }

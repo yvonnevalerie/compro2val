@@ -9,70 +9,65 @@ public class App {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         PhonebookService service = new PhonebookService();
+        String file = "contacts.csv";
 
-        String filename = "contacts.csv";
-
-        service.loadFromCSV(filename);
+        service.loadFromCSV(file);
 
         int choice;
 
         do {
-           System.out.println("""
-            -----------------
-           |  PHONEBOOK MENU |
-            -----------------
-             1. Add
-             2. Search
-             3. Remove
-             4. Display All
-             5. Save to CSV
-             0. Exit
-                   
-                   """);
+            System.out.println("\nPHONEBOOK MENU");
+            System.out.println("1. Add");
+            System.out.println("2. Search");
+            System.out.println("3. Remove");
+            System.out.println("4. Display All");
+            System.out.println("5. Save");
+            System.out.println("0. Exit");
+            System.out.print("Choice: ");
 
-            choice = scanner.nextInt();
-            scanner.nextLine(); 
+            choice = sc.nextInt();
+            sc.nextLine();
 
             switch (choice) {
 
                 case 1:
                     System.out.print("Name: ");
-                    String name = scanner.nextLine();
+                    String name = sc.nextLine();
 
                     System.out.print("Phone: ");
-                    String phone = scanner.nextLine();
+                    String phone = sc.nextLine();
 
                     System.out.print("Email: ");
-                    String email = scanner.nextLine();
+                    String email = sc.nextLine();
 
                     service.addContact(new Contact(name, phone, email));
-                    System.out.println("Contact added.");
+                    System.out.println("Added!");
                     break;
 
                 case 2:
-                    System.out.print("Enter name to search: ");
-                    String searchName = scanner.nextLine();
+                    System.out.print("Enter name: ");
+                    String search = sc.nextLine();
 
-                    Contact found = service.searchContact(searchName);
+                    Contact c = service.searchContact(search);
 
-                    if (found != null) {
+                    if (c != null) {
                         System.out.println("Found: " +
-                                found.getName() + " | " +
-                                found.getPhoneNumber() + " | " +
-                                found.getEmail());
+                                c.getName() + " | " +
+                                c.getPhoneNumber() + " | " +
+                                c.getEmail());
                     } else {
-                        System.out.println("Contact not found.");
+                        System.out.println("Not found.");
                     }
                     break;
 
                 case 3:
                     System.out.print("Enter name to remove: ");
-                    String removeName = scanner.nextLine();
+                    String remove = sc.nextLine();
 
-                    service.removeContact(removeName);
-                    System.out.println("Contact removed.");
+                    service.removeContact(remove);
+                    System.out.println("Removed.");
                     break;
 
                 case 4:
@@ -80,20 +75,20 @@ public class App {
                     break;
 
                 case 5:
-                    service.saveToCSV(filename);
+                    service.saveToCSV(file);
                     break;
 
                 case 0:
-                    service.saveToCSV(filename);
-                    System.out.println("Exiting...");
+                    service.saveToCSV(file);
+                    System.out.println("Goodbye!");
                     break;
 
                 default:
-                    System.out.println("Invalid choice.");
+                    System.out.println("Invalid.");
             }
 
         } while (choice != 0);
 
-        scanner.close();
+        sc.close();
     }
 }

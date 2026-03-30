@@ -28,7 +28,7 @@ public class PhonebookService {
 
     public void displayAll() {
         if (contacts.isEmpty()) {
-            System.out.println("No contacts found.");
+            System.out.println("No contacts available.");
             return;
         }
 
@@ -47,7 +47,7 @@ public class PhonebookService {
                 writer.newLine();
             }
 
-            System.out.println("Contacts saved successfully.");
+            System.out.println("Saved successfully!");
 
         } catch (IOException e) {
             System.out.println("Error saving file.");
@@ -64,15 +64,15 @@ public class PhonebookService {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
+                String[] data = line.split(",");
 
-                if (parts.length == 3) {
-                    Contact c = new Contact(parts[0], parts[1], parts[2]);
+                if (data.length == 3) {
+                    Contact c = new Contact(data[0], data[1], data[2]);
                     contacts.put(c.getName(), c);
                 }
             }
 
-            System.out.println("Contacts loaded successfully.");
+            System.out.println("Contacts loaded.");
 
         } catch (IOException e) {
             System.out.println("Error loading file.");
