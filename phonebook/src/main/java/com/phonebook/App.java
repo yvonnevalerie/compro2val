@@ -6,88 +6,89 @@ import com.phonebook.models.Contact;
 import com.phonebook.services.PhonebookService;
 
 public class App {
+
     public static void main(String[] args) {
 
+        Scanner sc = new Scanner(System.in);
         PhonebookService service = new PhonebookService();
-        Scanner scanner = new Scanner(System.in);
+        String file = "contacts.csv";
+
+        service.loadFromCSV(file);
 
         int choice;
 
-        do{
-            System.out.println("""
-                    -----------------------
-                   |     PHONEBOOK MENU    |
-                    -----------------------
-                   | |1| ADD               |
-                   | |2| SEARCH            |
-                   | |3| REMOVE            |
-                   | |4| DISPLAY ALL       |
-                   | |5| SAVE TO CSV       |
-                   | |0| EXIT              |
-                    -----------------------
+        do {
+            System.out.println("\nPHONEBOOK MENU");
+            System.out.println("1. Add");
+            System.out.println("2. Search");
+            System.out.println("3. Remove");
+            System.out.println("4. Display All");
+            System.out.println("5. Save");
+            System.out.println("0. Exit");
+            System.out.print("Choice: ");
 
-                    """);
-            System.out.print("Enter Choice:");
-            choice = scanner.nextInt();
-            scanner.nextLine();
+            choice = sc.nextInt();
+            sc.nextLine();
 
             switch (choice) {
+
                 case 1:
-                    System.out.println("Enter Name:");
-                    String name = scanner.nextLine();
-                    System.out.println("Enter Phone Number:");
-                    String phoneNumber = scanner.nextLine();
-                    System.out.println("Enter Email:");
-                    String email = scanner.nextLine();
-                    Contact contact = new Contact(name , phoneNumber , email);
-                    service.addContact(contact);
+                    System.out.print("Name: ");
+                    String name = sc.nextLine();
+
+                    System.out.print("Phone: ");
+                    String phone = sc.nextLine();
+
+                    System.out.print("Email: ");
+                    String email = sc.nextLine();
+
+                    service.addContact(new Contact(name, phone, email));
+                    System.out.println("Added!");
                     break;
 
                 case 2:
-                    System.out.print("Enter name to search: ");
-                    String searchName = scanner.nextLine();
+                    System.out.print("Enter name: ");
+                    String search = sc.nextLine();
 
-                    Contact found = service.searchContact(searchName);
-                    if (found != null) {
-                        System.out.println(found);
+                    Contact c = service.searchContact(search);
+
+                    if (c != null) {
+                        System.out.println("Found: " +
+                                c.getName() + " | " +
+                                c.getPhoneNumber() + " | " +
+                                c.getEmail());
                     } else {
-                        System.out.println("Contact not found.");
+                        System.out.println("Not found.");
                     }
                     break;
 
-                 case 3:
+                case 3:
                     System.out.print("Enter name to remove: ");
-                    String removeName = scanner.nextLine();
+                    String remove = sc.nextLine();
 
-                    boolean removed = service.removeContact(removeName);
-                    if (removed) {
-                        System.out.println("Contact removed.");
-                    } else {
-                        System.out.println("Contact not found.");
-                    }
+                    service.removeContact(remove);
+                    System.out.println("Removed.");
                     break;
-                
+
                 case 4:
-                    service.displayAllContacts();
+                    service.displayAll();
                     break;
 
                 case 5:
-                    service.saveToCSV("contacts.csv");
+                    service.saveToCSV(file);
                     break;
 
                 case 0:
-                    System.out.println("Exiting application...");
+                    service.saveToCSV(file);
+                    System.out.println("Goodbye!");
                     break;
 
-
-                 default:
-                    System.out.println("Invalid option. Try again.");
+                default:
+                    System.out.println("Invalid.");
             }
 
         } while (choice != 0);
 
-        scanner.close();
+        sc.close();
     }
 }
-
-
