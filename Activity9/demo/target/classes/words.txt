@@ -1,0 +1,8 @@
+apple
+banana
+orange
+mango
+grapes
+school
+teacher
+student
